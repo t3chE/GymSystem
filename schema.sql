@@ -56,3 +56,13 @@ CONSTRAINT FK_Bookings_MemberID FOREIGN KEY (MemberID) REFERENCES Members(Member
 CONSTRAINT FK_Bookings_ClassID FOREIGN KEY (ClassID) REFERENCES Classes(ClassID)
 );
 
+CREATE TABLE Payments(
+PaymentID INT PRIMARY KEY AUTO_INCREMENT,
+MemberID INT NOT NULL,
+Amount DECIMAL(10,2) NOT NULL,
+PaymentDate DATE NOT NULL DEFAULT (CURRENT_DATE),
+PaymentMethod VARCHAR(50),
+PaymentDescription VARCHAR(255),
+TransactionReference VARCHAR(100) UNIQUE,
+CONSTRAINT FK_Payments_MemberID FOREIGN KEY (MemberID) REFERENCES Members(MemberID)
+);
