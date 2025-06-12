@@ -32,3 +32,27 @@ Phone VARCHAR(20),
 Specialisation VARCHAR(100)
 );
 
+CREATE TABLE Classes(
+ClassID INT PRIMARY KEY AUTO_INCREMENT,
+ClassName VARCHAR(100) NOT NULL,
+ClassDescription TEXT,
+ClassDate DATE NOT NULL,
+StartTime TIME NOT NULL,
+EndTime TIME NOT NULL,
+TrainerID INT NOT NULL,
+MaxCapacity INT NOT NULL,
+CurrectBookings INT DEFAULT(0),
+CONSTRAINT FK_Classes_TrainerID FOREIGN KEY (TrainerID) REFERENCES Trainers(TrainerID)
+);
+
+CREATE TABLE Bookings(
+BookingID INT PRIMARY KEY NOT NULL,
+MemberID INT NOT NULL,
+ClassID INT NOT NULL,
+BookingDateTime DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+BookingStatus ENUM('Confirmed', 'Pending', 'Cancelled', 'Completed') NOT NULL,
+Attendance BOOLEAN DEFAULT(false),
+CONSTRAINT FK_Bookings_MemberID FOREIGN KEY (MemberID) REFERENCES Members(MemberID),
+CONSTRAINT FK_Bookings_ClassID FOREIGN KEY (ClassID) REFERENCES Classes(ClassID)
+);
+
