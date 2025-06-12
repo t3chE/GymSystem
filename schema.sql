@@ -7,3 +7,18 @@ Price DECIMAL(10,2) NOT NULL,
 DurationMonths INT NOT NULL,
 Benefits TEXT
 ); 
+
+CREATE TABLE Members(
+MemberID INT PRIMARY KEY AUTO_INCREMENT,
+FirstName VARCHAR(50) NOT NULL,
+LastName VARCHAR(50) NOT NULL,
+Email VARCHAR(100) UNIQUE NOT NULL,
+Phone VARCHAR(20),
+Address VARCHAR(255),
+DateOfBirth DATE,
+PlanID INT NOT NULL,
+MembershipStartDate DATE NOT NULL,
+MembershipEndDate DATE,
+OustandingBalance DECIMAL(10,2) DEFAULT(0.00),
+CONSTRAINT FK_Members_PlanID FOREIGN KEY (PlanID) REFERENCES MembershipPlans(PlanID)
+);
