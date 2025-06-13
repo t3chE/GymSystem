@@ -45,3 +45,16 @@ INSERT INTO Classes (ClassName, ClassDescription, ClassDate, StartTime, EndTime,
 ('Pilates for Beginners', 'Introduction to Pilates principles and exercises.', '2025-06-17', '17:00:00', '18:00:00', 3, 12, 7),
 ('CrossFit Basics', 'Learn the fundamental movements of CrossFit.', '2025-06-18', '09:00:00', '10:30:00', 4, 10, 9);
 
+--
+-- Data for table `Bookings`
+-- (Ensure MemberID and ClassID reference existing IDs. BookingID is PK, NOT AUTO_INCREMENT, so assign manually unique ones)
+--
+INSERT INTO Bookings (BookingID, MemberID, ClassID, BookingDateTime, BookingStatus, Attendance) VALUES
+(1001, 1, 2, CURRENT_TIMESTAMP, 'Confirmed', TRUE),
+(1002, 2, 1, CURRENT_TIMESTAMP, 'Confirmed', TRUE),
+(1003, 3, 3, CURRENT_TIMESTAMP, 'Confirmed', FALSE),
+(1004, 4, 1, CURRENT_TIMESTAMP, 'Pending', FALSE),
+(1005, 5, 2, CURRENT_TIMESTAMP, 'Confirmed', FALSE),
+(1006, 1, 3, CURRENT_TIMESTAMP, 'Confirmed', FALSE),
+(1007, 2, 4, CURRENT_TIMESTAMP, 'Completed', TRUE);
+
