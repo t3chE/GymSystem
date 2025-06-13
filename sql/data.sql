@@ -58,3 +58,16 @@ INSERT INTO Bookings (BookingID, MemberID, ClassID, BookingDateTime, BookingStat
 (1006, 1, 3, CURRENT_TIMESTAMP, 'Confirmed', FALSE),
 (1007, 2, 4, CURRENT_TIMESTAMP, 'Completed', TRUE);
 
+--
+-- Data for table `Payments`
+-- (Ensure MemberID references existing MemberIDs from Members)
+--
+INSERT INTO Payments (MemberID, Amount, PaymentDate, PaymentMethod, PaymentDescription, TransactionReference) VALUES
+(1, 49.99, CURRENT_DATE, 'Credit Card', 'Monthly Standard Plan payment', 'TRX001'),
+(2, 29.99, CURRENT_DATE, 'Debit Card', 'Monthly Basic Plan payment', 'TRX002'),
+(3, 399.99, CURRENT_DATE, 'Bank Transfer', 'Annual Premium Plan payment', 'TRX003'),
+(4, 24.99, CURRENT_DATE, 'Credit Card', 'Quarterly Student Plan payment', 'TRX004'),
+(5, 49.99, CURRENT_DATE, 'Debit Card', 'Monthly Standard Plan payment', 'TRX005');
+
+-- Re-enable foreign key checks
+SET FOREIGN_KEY_CHECKS = 1;
