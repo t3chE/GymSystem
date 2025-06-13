@@ -19,7 +19,7 @@ DateOfBirth DATE,
 PlanID INT NOT NULL,
 MembershipStartDate DATE NOT NULL,
 MembershipEndDate DATE,
-OustandingBalance DECIMAL(10,2) DEFAULT(0.00),
+OustandingBalance DECIMAL(10,2) DEFAULT 0.00,
 CONSTRAINT FK_Members_PlanID FOREIGN KEY (PlanID) REFERENCES MembershipPlans(PlanID)
 );
 
@@ -41,7 +41,7 @@ StartTime TIME NOT NULL,
 EndTime TIME NOT NULL,
 TrainerID INT NOT NULL,
 MaxCapacity INT NOT NULL,
-CurrectBookings INT DEFAULT(0),
+CurrentBookings INT DEFAULT 0,
 CONSTRAINT FK_Classes_TrainerID FOREIGN KEY (TrainerID) REFERENCES Trainers(TrainerID)
 );
 
@@ -51,7 +51,7 @@ MemberID INT NOT NULL,
 ClassID INT NOT NULL,
 BookingDateTime DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 BookingStatus ENUM('Confirmed', 'Pending', 'Cancelled', 'Completed') NOT NULL,
-Attendance BOOLEAN DEFAULT(false),
+Attendance BOOLEAN DEFAULT FALSE,
 CONSTRAINT FK_Bookings_MemberID FOREIGN KEY (MemberID) REFERENCES Members(MemberID),
 CONSTRAINT FK_Bookings_ClassID FOREIGN KEY (ClassID) REFERENCES Classes(ClassID)
 );
