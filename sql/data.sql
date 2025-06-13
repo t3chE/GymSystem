@@ -34,3 +34,14 @@ INSERT INTO Trainers (FirstName, LastName, Email, Phone, Specialisation) VALUES
 ('Charlie', 'Brown', 'charlie.brown@gym.com', '07700 900103', 'Yoga & Flexibility'),
 ('Diana', 'Miller', 'diana.miller@gym.com', '07700 900104', 'CrossFit');
 
+--
+-- Data for table `Classes`
+-- (Ensure TrainerID references existing TrainerIDs from Trainers)
+--
+INSERT INTO Classes (ClassName, ClassDescription, ClassDate, StartTime, EndTime, TrainerID, MaxCapacity, CurrentBookings) VALUES
+('Morning Yoga', 'A gentle yoga session to start your day.', '2025-06-16', '08:00:00', '09:00:00', 3, 15, 8),
+('High-Intensity Interval Training', 'Push your limits with this fast-paced workout.', '2025-06-16', '18:00:00', '19:00:00', 2, 20, 15),
+('Strength & Core', 'Build strength and stabilize your core.', '2025-06-17', '10:00:00', '11:00:00', 1, 18, 10),
+('Pilates for Beginners', 'Introduction to Pilates principles and exercises.', '2025-06-17', '17:00:00', '18:00:00', 3, 12, 7),
+('CrossFit Basics', 'Learn the fundamental movements of CrossFit.', '2025-06-18', '09:00:00', '10:30:00', 4, 10, 9);
+
