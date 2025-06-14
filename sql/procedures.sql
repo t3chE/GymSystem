@@ -66,3 +66,55 @@ BEGIN
 
     SELECT 'Member added successfully!' AS Message, LAST_INSERT_ID() AS MemberID;
 END$$
+
+-- ==============================================================================
+-- Procedure: UpdateMemberPlan
+-- Description: Updates a member's membership plan and recalculates the end date.
+-- Parameters:
+--   p_MemberID: ID of the member to update.
+--   p_NewPlanID: New plan ID for the member (FK to MembershipPlans).
+--   p_NewMembershipStartDate: New start date for the membership (can be same as old).
+-- ==============================================================================
+DROP PROCEDURE IF EXISTS UpdateMemberPlan$$
+CREATE PROCEDURE UpdateMemberPlan(
+    IN p_MemberID INT,
+    IN p_NewPlanID INT,
+    IN p_NewMembershipStartDate DATE
+)
+BEGIN
+    DECLARE v_DurationMonths INT;
+    DECLARE v_NewMembershipEndDate DATE;
+    DECLARE v_MemberExists INT;
+    DECLARE v_PlanExists INT;
+
+    -- Check if member exists
+    SELECT COUNT(*) INTO v_MemberExists FROM Members WHERE MemberID = p_MemberID;
+    IF v_MemberExists = 0 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Error: MemberID does not exist.';
+    END IF;
+
+    -- Check if new plan exists
+    SELECT COUNT(*) INTO v_PlanExists FROM MembershipPlans WHERE PlanID = p_NewPlanID;
+    IF v_PlanExists = 0 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Error: New PlanID does not exist.';
+    END IF;
+
+    -- Retrieve the duration of the new plan
+    SELECT DurationMonths
+    INTO v_DurationMonths
+    FROM MembershipPlans
+    WHERE PlanID = p_NewPlanID;
+
+    -- Calculate the new MembershipEndDate
+    SET v_NewMembershipEndDate = DATE_ADD(p_NewMembershipStartDate, INTERVAL v_DurationMonths MONTH);
+
+    -- Update member's plan details
+    UPDATE Members
+    SET
+        PlanID = p_NewPlanID,
+        MembershipStartDate = p_NewMembershipStartDate,
+        MembershipEndDate = v_NewMembershipEndDate
+    WHERE MemberID = p_MemberID;
+
+    SELECT 'Member plan updated successfully!' AS Message;
+END$$
