@@ -222,3 +222,67 @@ BEGIN
 
     SELECT 'Payment recorded and balance updated!' AS Message, LAST_INSERT_ID() AS PaymentID;
 END$$
+
+-- ==============================================================================
+-- Procedure: GetMemberDetails
+-- Description: Retrieves all details for a specific member.
+-- Parameters:
+--   p_MemberID: ID of the member to retrieve.
+-- ==============================================================================
+DROP PROCEDURE IF EXISTS GetMemberDetails$$
+CREATE PROCEDURE GetMemberDetails(
+    IN p_MemberID INT
+)
+BEGIN
+    SELECT
+        M.MemberID,
+        M.FirstName,
+        M.LastName,
+        M.Email,
+        M.Phone,
+        M.Address,
+        M.DateOfBirth,
+        MP.PlanName,
+        MP.Price AS PlanPrice,
+        MP.DurationMonths AS PlanDurationMonths,
+        M.MembershipStartDate,
+        M.MembershipEndDate,
+        M.OustandingBalance
+    FROM Members M
+    JOIN MembershipPlans MP ON M.PlanID = MP.PlanID
+    WHERE M.MemberID = p_MemberID;
+END$$
+
+-- ==============================================================================
+-- Procedure: GetClassesByDate
+-- Description: Retrieves class schedule for a specific date.
+-- Parameters:
+--   p_ClassDate: The date for which to retrieve classes.
+-- ==============================================================================
+DROP PROCEDURE IF EXISTS GetClassesByDate$$
+CREATE PROCEDURE GetClassesByDate(
+    IN p_ClassDate DATE
+)
+BEGIN
+    SELECT
+        C.ClassID,
+        C.ClassName,
+        C.ClassDescription,
+        C.ClassDate,
+        C.StartTime,
+        C.EndTime,
+        T.FirstName AS TrainerFirstName,
+        T.LastName AS TrainerLastName,
+        T.Specialisation,
+        C.MaxCapacity,
+        C.CurrentBookings
+    FROM Classes C
+    JOIN Trainers T ON C.TrainerID = T.TrainerID
+    WHERE C.ClassDate = p_ClassDate
+    ORDER BY C.StartTime;
+END$$
+
+-- Reset the delimiter back to semicolon
+DELIMITER ;
+
+
