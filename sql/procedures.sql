@@ -118,3 +118,55 @@ BEGIN
 
     SELECT 'Member plan updated successfully!' AS Message;
 END$$
+
+-- ==============================================================================
+DROP PROCEDURE IF EXISTS BookClass$$
+CREATE PROCEDURE BookClass(
+    IN p_MemberID INT,
+    IN p_ClassID INT
+)
+BEGIN
+    DECLARE v_MaxCapacity INT;
+    DECLARE v_CurrentBookings INT;
+    DECLARE v_NextBookingID INT;
+    DECLARE v_MemberExists INT;
+    DECLARE v_ClassExists INT;
+
+    -- Check if member exists
+    SELECT COUNT(*) INTO v_MemberExists FROM Members WHERE MemberID = p_MemberID;
+    IF v_MemberExists = 0 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Error: MemberID does not exist.';
+    END IF;
+
+    -- Check if class exists and get its capacity details
+    SELECT MaxCapacity, CurrentBookings INTO v_MaxCapacity, v_CurrentBookings
+    FROM Classes
+    WHERE ClassID = p_ClassID;
+
+    IF v_MaxCapacity IS NULL THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Error: ClassID does not exist.';
+    ELSEIF v_CurrentBookings >= v_MaxCapacity THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Error: Class is already full.';
+    ELSE
+        -- Generate a unique BookingID (assuming no AUTO_INCREMENT on BookingID)
+        -- Start from 1000 if no bookings exist, otherwise max + 1
+        SELECT IFNULL(MAX(BookingID), 1000) + 1 INTO v_NextBookingID FROM Bookings;
+
+        -- Insert the new booking
+        INSERT INTO Bookings (BookingID, MemberID, ClassID, BookingDateTime, BookingStatus, Attendance) VALUES (
+            v_NextBookingID,
+            p_MemberID,
+            p_ClassID,
+            CURRENT_TIMESTAMP, -- Use CURRENT_TIMESTAMP directly (no parentheses for MySQL 8.4)
+            'Confirmed',
+            FALSE
+        );
+
+        -- Update the current bookings count for the class
+        UPDATE Classes
+        SET CurrentBookings = CurrentBookings + 1
+        WHERE ClassID = p_ClassID;
+
+        SELECT 'Class booked successfully!' AS Message, v_NextBookingID AS BookingID;
+    END IF;
+END$$
