@@ -170,3 +170,55 @@ BEGIN
         SELECT 'Class booked successfully!' AS Message, v_NextBookingID AS BookingID;
     END IF;
 END$$
+
+-- ==============================================================================
+-- Procedure: RecordPayment
+-- Description: Records a payment for a member and updates their outstanding balance.
+-- Parameters:
+--   p_MemberID: ID of the member making the payment.
+--   p_Amount: Amount of the payment.
+--   p_PaymentMethod: Method of payment (e.g., 'Credit Card', 'Cash').
+--   p_PaymentDescription: Description of the payment.
+--   p_TransactionReference: Unique reference for the transaction (optional, can be NULL).
+-- ==============================================================================
+DROP PROCEDURE IF EXISTS RecordPayment$$
+CREATE PROCEDURE RecordPayment(
+    IN p_MemberID INT,
+    IN p_Amount DECIMAL(10,2),
+    IN p_PaymentMethod VARCHAR(50),
+    IN p_PaymentDescription VARCHAR(255),
+    IN p_TransactionReference VARCHAR(100)
+)
+BEGIN
+    DECLARE v_MemberExists INT;
+
+    -- Check if member exists
+    SELECT COUNT(*) INTO v_MemberExists FROM Members WHERE MemberID = p_MemberID;
+    IF v_MemberExists = 0 THEN
+        SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Error: MemberID does not exist.';
+    END IF;
+
+    -- Insert the new payment record
+    INSERT INTO Payments (
+        MemberID,
+        Amount,
+        PaymentDate,
+        PaymentMethod,
+        PaymentDescription,
+        TransactionReference
+    ) VALUES (
+        p_MemberID,
+        p_Amount,
+        CURRENT_DATE, -- Use CURRENT_DATE directly (no parentheses for MySQL 8.4)
+        p_PaymentMethod,
+        p_PaymentDescription,
+        p_TransactionReference
+    );
+
+    -- Update the member's outstanding balance
+    UPDATE Members
+    SET OustandingBalance = OustandingBalance - p_Amount
+    WHERE MemberID = p_MemberID;
+
+    SELECT 'Payment recorded and balance updated!' AS Message, LAST_INSERT_ID() AS PaymentID;
+END$$
