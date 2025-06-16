@@ -122,4 +122,25 @@ WHERE
     MemberID = 1
 ORDER BY
     ClassDate DESC, StartTime DESC;
-  
+-- 14. List members who have an outstanding balance (using the MembersWithOutstandingBalance view)
+SELECT
+    FirstName,
+    LastName,
+    Email,
+    OustandingBalance,
+    PlanName
+FROM
+    MembersWithOutstandingBalance;
+
+-- 15. Count the number of members per membership plan
+SELECT
+    MP.PlanName,
+    COUNT(M.MemberID) AS NumberOfMembers
+FROM
+    MembershipPlans MP
+LEFT JOIN
+    Members M ON MP.PlanID = M.PlanID
+GROUP BY
+    MP.PlanName
+ORDER BY
+    NumberOfMembers DESC;
