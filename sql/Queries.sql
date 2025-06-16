@@ -144,3 +144,23 @@ GROUP BY
     MP.PlanName
 ORDER BY
     NumberOfMembers DESC;
+
+-- 16. Get the average price of all membership plans
+SELECT
+    AVG(Price) AS AveragePlanPrice
+FROM
+    MembershipPlans;
+
+-- 17. Find the most popular class (by number of bookings)
+SELECT
+    C.ClassName,
+    COUNT(B.BookingID) AS TotalBookings
+FROM
+    Classes C
+JOIN
+    Bookings B ON C.ClassID = B.ClassID
+GROUP BY
+    C.ClassName
+ORDER BY
+    TotalBookings DESC
+LIMIT 1;
