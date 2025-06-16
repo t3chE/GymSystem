@@ -43,3 +43,33 @@ JOIN
 WHERE
     MP.PlanName = 'Standard Monthly';
 
+-- 8. Find classes taught by a specific trainer (e.g., 'Alice Johnson')
+SELECT
+    C.ClassName,
+    C.ClassDate,
+    C.StartTime,
+    C.EndTime,
+    T.FirstName,
+    T.LastName
+FROM
+    Classes C
+JOIN
+    Trainers T ON C.TrainerID = T.TrainerID
+WHERE
+    T.FirstName = 'Alice' AND T.LastName = 'Johnson';
+
+-- 9. Get all confirmed bookings for a specific member (e.g., MemberID 1)
+SELECT
+    B.BookingID,
+    C.ClassName,
+    C.ClassDate,
+    C.StartTime,
+    B.BookingDateTime
+FROM
+    Bookings B
+JOIN
+    Classes C ON B.ClassID = C.ClassID
+WHERE
+    B.MemberID = 1 AND B.BookingStatus = 'Confirmed'
+ORDER BY
+    C.ClassDate, C.StartTime;
