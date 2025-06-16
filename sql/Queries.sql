@@ -30,3 +30,16 @@ SELECT *
 FROM Payments;
 
 -- 7. Get details of members on a specific plan (e.g., 'Standard Monthly')
+SELECT
+    M.FirstName,
+    M.LastName,
+    M.Email,
+    MP.PlanName,
+    MP.Price
+FROM
+    Members M
+JOIN
+    MembershipPlans MP ON M.PlanID = MP.PlanID
+WHERE
+    MP.PlanName = 'Standard Monthly';
+
