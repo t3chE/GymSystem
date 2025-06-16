@@ -88,3 +88,27 @@ JOIN
     Trainers T ON C.TrainerID = T.TrainerID
 ORDER BY
     B.BookingDateTime DESC;
+    
+-- ==============================================================================
+-- View: MembersWithOutstandingBalance
+-- Description: Lists members who have an outstanding balance greater than zero.
+-- ==============================================================================
+DROP VIEW IF EXISTS MembersWithOutstandingBalance;
+CREATE VIEW MembersWithOutstandingBalance AS
+SELECT
+    M.MemberID,
+    M.FirstName,
+    M.LastName,
+    M.Email,
+    M.Phone,
+    M.OustandingBalance,
+    MP.PlanName
+FROM
+    Members M
+JOIN
+    MembershipPlans MP ON M.PlanID = MP.PlanID
+WHERE
+    M.OustandingBalance > 0.00
+ORDER BY
+    M.OustandingBalance DESC;
+
