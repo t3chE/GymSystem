@@ -23,7 +23,12 @@ INSERT INTO Members (FirstName, LastName, Email, Phone, Address, DateOfBirth, Pl
 ('Jane', 'Smith', 'jane.smith@email.com', '07700 900202', '456 Oak Ave, Somewhere', '1988-11-20', 1, '2023-03-01', '2024-03-01', 10.00),
 ('Peter', 'Jones', 'peter.jones@email.com', '07700 900203', '789 Pine Ln, Nowhere', '1995-07-07', 3, '2022-10-15', '2023-10-15', 0.00),
 ('Sarah', 'Davis', 'sarah.davis@email.com', '07700 900204', '101 Elm Rd, Ourcity', '2000-02-28', 4, '2024-02-01', '2024-05-01', 0.00),
-('Michael', 'Taylor', 'michael.t@email.com', '07700 900205', '22 Apple Way, Yourtown', '1985-09-10', 2, '2023-11-01', '2024-11-01', 25.50);
+('Michael', 'Taylor', 'michael.t@email.com', '07700 900205', '22 Apple Way, Yourtown', '1985-09-10', 2, '2023-11-01', '2024-11-01', 25.50),
+('Emily', 'Clark', 'emily.c@email.com', '07700 900206', '55 Cherry Blossom, Villageton', '1992-03-22', 1, '2024-01-10', '2025-01-10', 0.00),
+('David', 'White', 'david.w@email.com', '07700 900207', '88 River Rd, Lakeside', '1980-01-01', 3, '2023-06-01', '2024-06-01', 5.00),
+('Jessica', 'Brown', 'jessica.b@email.com', '07700 900208', '99 Forest Ave, Woodland', '1998-12-05', 4, '2024-04-15', '2025-04-15', 0.00),
+('Daniel', 'Green', 'daniel.g@email.com', '07700 900209', '33 Mountain View, Hilltop', '1975-06-30', 2, '2023-09-01', '2024-09-01', 15.75),
+('Olivia', 'Hall', 'olivia.h@email.com', '07700 900210', '77 Sunset Blvd, Coastville', '2001-08-14', 1, '2024-03-20', '2025-03-20', 0.00);
 
 --
 -- Data for table `Trainers`
