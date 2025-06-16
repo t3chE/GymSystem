@@ -14,9 +14,8 @@ This repository contains the SQL scripts and documentation for a relational data
 
 ## Database Schema
 - **GymSystem ER diagram:**
-![ER Diagram](image.png)
 
-- **Schema Table:**
+![ER Diagram](image.png)
 
 ## Getting Started
 
@@ -24,3 +23,22 @@ This repository contains the SQL scripts and documentation for a relational data
 -   MySQL Server (version 8.0 or higher)
 -   A MySQL client (MySQL Workbench, DBeaver, or command-line client)
 
+### Installation
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/t3chE/GymSystem.git](https://github.com/t3chE/GymSystem.git)
+    cd GymSystem
+    ```
+2.  **Connect to your MySQL server.**
+3.  **Execute the schema script:**
+    ```sql
+    -- In your MySQL client or terminal:
+    SOURCE schema.sql;
+    ```
+    (Alternatively, copy and paste the contents of `schema.sql` into your client and execute.)
+4.  **Execute the data script (optional):**
+    ```sql
+    -- After creating the schema:
+    USE your_database_name; -- Replace with the name you defined in schema.sql
+    SOURCE data.sql;
+    ```
