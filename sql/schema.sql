@@ -65,8 +65,5 @@ PaymentMethod VARCHAR(50),
 PaymentDescription VARCHAR(255),
 TransactionReference VARCHAR(100) UNIQUE,
 CONSTRAINT FK_Payments_MemberID FOREIGN KEY (MemberID) REFERENCES Members(MemberID)
-<<<<<<< HEAD
 );
-=======
-);
->>>>>>> dd23504874c6d969117e561789f072ed0e6ddea3
+
