@@ -164,3 +164,17 @@ GROUP BY
 ORDER BY
     TotalBookings DESC
 LIMIT 1;
+
+-- 18. List all payments made by a specific member (e.g., MemberID 1)
+SELECT
+    P.PaymentID,
+    P.Amount,
+    P.PaymentDate,
+    P.PaymentMethod,
+    P.PaymentDescription
+FROM
+    Payments P
+WHERE
+    P.MemberID = 1
+ORDER BY
+    P.PaymentDate DESC;
