@@ -73,3 +73,23 @@ WHERE
     B.MemberID = 1 AND B.BookingStatus = 'Confirmed'
 ORDER BY
     C.ClassDate, C.StartTime;
+
+-- 10. Calculate the total outstanding balance across all members
+SELECT
+    SUM(OustandingBalance) AS TotalOutstandingBalance
+FROM
+    Members;
+
+-- 11. Find classes with available slots (using the UpcomingClasses view)
+SELECT
+    ClassName,
+    ClassDate,
+    StartTime,
+    EndTime,
+    AvailableSlots
+FROM
+    UpcomingClasses
+WHERE
+    AvailableSlots > 0
+ORDER BY
+    ClassDate, StartTime;
