@@ -55,3 +55,36 @@ WHERE
 ORDER BY
     C.ClassDate, C.StartTime;
 
+-- ==============================================================================
+-- View: MemberBookingsSummary
+-- Description: Provides a summary of all class bookings made by members,
+--              including member and class details.
+-- ==============================================================================
+DROP VIEW IF EXISTS MemberBookingsSummary;
+CREATE VIEW MemberBookingsSummary AS
+SELECT
+    B.BookingID,
+    M.MemberID,
+    M.FirstName AS MemberFirstName,
+    M.LastName AS MemberLastName,
+    M.Email AS MemberEmail,
+    C.ClassID,
+    C.ClassName,
+    C.ClassDate,
+    C.StartTime,
+    C.EndTime,
+    T.FirstName AS TrainerFirstName,
+    T.LastName AS TrainerLastName,
+    B.BookingDateTime,
+    B.BookingStatus,
+    B.Attendance
+FROM
+    Bookings B
+JOIN
+    Members M ON B.MemberID = M.MemberID
+JOIN
+    Classes C ON B.ClassID = C.ClassID
+JOIN
+    Trainers T ON C.TrainerID = T.TrainerID
+ORDER BY
+    B.BookingDateTime DESC;
