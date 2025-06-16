@@ -13,6 +13,7 @@ This repository contains the SQL scripts and documentation for a relational data
 -   **Views:** Pre-defined views for common reporting needs.
 
 ## Database Schema
+- **GymSystem ER diagram:**
 ![ER Diagram](image.png)
 
 - **Schema Table:**
