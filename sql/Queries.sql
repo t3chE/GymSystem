@@ -93,3 +93,33 @@ WHERE
     AvailableSlots > 0
 ORDER BY
     ClassDate, StartTime;
+  
+-- 12. List all active members (using the ActiveMembers view)
+SELECT
+    MemberID,
+    FirstName,
+    LastName,
+    Email,
+    PlanName,
+    MembershipEndDate
+FROM
+    ActiveMembers
+ORDER BY
+    MembershipEndDate ASC;
+
+-- 13. Get a summary of a member's bookings (using the MemberBookingsSummary view)
+SELECT
+    ClassName,
+    ClassDate,
+    StartTime,
+    TrainerFirstName,
+    TrainerLastName,
+    BookingStatus,
+    Attendance
+FROM
+    MemberBookingsSummary
+WHERE
+    MemberID = 1
+ORDER BY
+    ClassDate DESC, StartTime DESC;
+  
