@@ -67,7 +67,8 @@ This repository contains the SQL scripts and documentation for a relational data
     ```
     This file contains scripts used for ad-hoc testing or providing examples for other developers.
 
-
+```
 Contact
 •	[https://github.com/t3chE](https://github.com/t3chE)
 •	[https://www.linkedin.com/in/linkgus/](https://www.linkedin.com/in/linkgus/)
+```
