@@ -38,7 +38,7 @@ This repository contains the SQL scripts and documentation for a relational data
     -- In your MySQL client or terminal:
     SOURCE schema.sql;
     ```
-    This script will create the 'gymdb' database and all necessary tables.
+    This script will create the 'gymdb' database and all necessary tables. It contains all the Data Definition Language (DDL) statements.`
     (Alternatively, copy and paste the contents of `schema.sql` into your client and execute.)
 
 
@@ -48,7 +48,7 @@ This repository contains the SQL scripts and documentation for a relational data
     USE gym_db; 
     SOURCE data.sql;
     ```
-    This script will populate the tables with sample data.
+    This script will populate the database with initial sample or default data once the schema is created. It containd Data Manipulation Language (DML) statements.
 
 
 5. **Add Procedures and Views (Optional):**
@@ -57,7 +57,9 @@ This repository contains the SQL scripts and documentation for a relational data
     SOURCE procedures.sql;
            views.sql;
     ```
-    These scripts can be added to execute particular procedures and data views.
+    The procurement file holds all your stored procedures. Stored procedures are pre-compiled SQL code blocks that perform specific tasks, often involving multiple SQL statements. They can improve performance and security.
+
+    The views file defines the database views. Views are virtual tables based on the result-set of a SQL query. They are used to simplify complex queries, restrict data access, or provide a consistent interface to data that might change over time.
 
 
 6. **Execute the queries script:**
@@ -65,7 +67,7 @@ This repository contains the SQL scripts and documentation for a relational data
     -- Once all other scripts have been run:
     SOURCE queries.sql;
     ```
-    This file contains scripts used for ad-hoc testing or providing examples for other developers.
+    This file is more flexible, often used for ad-hoc testing or providing examples for other developers. It can contain frequently used SELECT queries, UPDATE examples, DELETE examples, or even just comments explaining common ways to interact with the data. 
 
 
     Contact
