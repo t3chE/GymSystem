@@ -69,5 +69,5 @@ This repository contains the SQL scripts and documentation for a relational data
 
 
 Contact
-•	[Your GitHub Profile](https://github.com/t3chE)
-•	[Your LinkedIn Profile](https://www.linkedin.com/in/linkgus/)
+•	[https://github.com/t3chE](https://github.com/t3chE)
+•	[https://www.linkedin.com/in/linkgus/](https://www.linkedin.com/in/linkgus/)
