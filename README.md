@@ -23,22 +23,41 @@ This repository contains the SQL scripts and documentation for a relational data
 -   MySQL Server (version 8.0 or higher)
 -   A MySQL client (MySQL Workbench, DBeaver, or command-line client)
 
-### Installation
+### Installation and Execution
 1.  **Clone the repository:**
     ```bash
     git clone [https://github.com/t3chE/GymSystem.git](https://github.com/t3chE/GymSystem.git)
     cd GymSystem
     ```
 2.  **Connect to your MySQL server.**
+
 3.  **Execute the schema script:**
     ```sql
     -- In your MySQL client or terminal:
     SOURCE schema.sql;
     ```
+    This script will create the 'gymdb' database and all necessary tables.
     (Alternatively, copy and paste the contents of `schema.sql` into your client and execute.)
-4.  **Execute the data script (optional):**
+
+4.  **Execute the data script:**
     ```sql
     -- After creating the schema:
-    USE your_database_name; -- Replace with the name you defined in schema.sql
+    USE gym_db; 
     SOURCE data.sql;
     ```
+    This script will populate the tables with sample data.
+
+5. **Add Procedures and Views (Optional):**
+    ```sql
+    -- If applicable, execute `procedures.sql` and `views.sql`:
+    SOURCE procedures.sql;
+           views.sql;
+    ```
+    These scripts can be added to execute particular procedures and data views.
+
+6. **Execute the queries script:**
+    ```sql
+    -- Once all other scripts have been run:
+    SOURCE queries.sql;
+    ```
+    This file contains scripts used for ad-hoc testing or providing examples for other developers.
