@@ -58,7 +58,7 @@ This repository contains the SQL scripts and documentation for a relational data
            views.sql;
     ```
     These scripts can be added to execute particular procedures and data views.
-    
+
 
 6. **Execute the queries script:**
     ```sql
@@ -66,3 +66,8 @@ This repository contains the SQL scripts and documentation for a relational data
     SOURCE queries.sql;
     ```
     This file contains scripts used for ad-hoc testing or providing examples for other developers.
+
+
+Contact
+•	[Your GitHub Profile](https://github.com/t3chE)
+•	[Your LinkedIn Profile](https://www.linkedin.com/in/linkgus/)
