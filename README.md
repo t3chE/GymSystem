@@ -29,7 +29,9 @@ This repository contains the SQL scripts and documentation for a relational data
     git clone [https://github.com/t3chE/GymSystem.git](https://github.com/t3chE/GymSystem.git)
     cd GymSystem
     ```
+
 2.  **Connect to your MySQL server.**
+
 
 3.  **Execute the schema script:**
     ```sql
@@ -39,6 +41,7 @@ This repository contains the SQL scripts and documentation for a relational data
     This script will create the 'gymdb' database and all necessary tables.
     (Alternatively, copy and paste the contents of `schema.sql` into your client and execute.)
 
+
 4.  **Execute the data script:**
     ```sql
     -- After creating the schema:
@@ -47,6 +50,7 @@ This repository contains the SQL scripts and documentation for a relational data
     ```
     This script will populate the tables with sample data.
 
+
 5. **Add Procedures and Views (Optional):**
     ```sql
     -- If applicable, execute `procedures.sql` and `views.sql`:
@@ -54,6 +58,7 @@ This repository contains the SQL scripts and documentation for a relational data
            views.sql;
     ```
     These scripts can be added to execute particular procedures and data views.
+    
 
 6. **Execute the queries script:**
     ```sql
