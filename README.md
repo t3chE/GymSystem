@@ -70,6 +70,14 @@ This repository contains the SQL scripts and documentation for a relational data
     This file is more flexible, often used for ad-hoc testing or providing examples for other developers. It can contain frequently used SELECT queries, UPDATE examples, DELETE examples, or even just comments explaining common ways to interact with the data. 
 
 
+7. **Add User Privileges and Access Controls:**
+    ```sql
+    -- Finally add security features:
+    SOURCE sequrity.sql;
+    ```
+    MySQL script that uses GRANT and REVOKE statements to set up the user privileges for your specified roles: Admin, Trainer, Receptionist/Front-Desk, and Reporting.
+
+
     Contact
     -	[https://github.com/t3chE](https://github.com/t3chE)
     -	[https://www.linkedin.com/in/linkgus/](https://www.linkedin.com/in/linkgus/)
